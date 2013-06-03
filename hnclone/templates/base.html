@@ -1,0 +1,28 @@
+{% load staticfiles %}
+{% load url from future %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HN clone</title>
+    <link rel="stylesheet" type="text/css" href="{% static "css/master.css" %}">
+    {% block head %}
+    {% endblock head %}
+</head>    
+<body>
+    <div id="content">
+        <div id="header">
+            <div id="site-logo">H</div>
+            {% if user.is_authenticated %}
+                <div id="user-info">{{ user.username }} | <a href="{% url 'story' %}">submit</a> | <a href="{% url 'logout' %}">logout</a></div>
+            {% else %}
+                <div id="user-info"><a href="{% url 'login' %}">login</a></div>
+            {% endif %}
+            <div id="site-title"><h1>HN clone</h1></div>
+        </div>
+        {% block content %}
+
+        {% endblock content %}
+    </div>
+</body>
+</html>
